@@ -51,7 +51,8 @@ const app = new Vue({
         } else {
           var x = this.getRadomNumber(this.zoneB.x1, this.zoneB.x2);
           var y = this.getRadomNumber(this.zoneB.y1, this.zoneB.y2);
-          
+
+          // Esto es lo que tú tienes
           // x = (zonaB.x1 + (zonaA.B2-zonaA.B1))*Math.random();
           // y = (zonaB.y1 + (zonaA.B2-zonaA.B1))*Math.random();
 
