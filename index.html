@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perceptron</title>
+  </head>
+  
+  <body>
+    <div id="app">
+      <div class="header">
+
+        <div class="zone-a">
+          <p>Zona A</p>
+          <label for="zona-a-x1">X1</label>
+          <input type="number" name='zona-a-x1' v-model="zoneA.x1" id="zona-a-x1">
+
+          <label for="zona-a-y1">Y1</label>
+          <input type="number" name='zona-a-y1' v-model="zoneA.y1" id="zona-b-y1">
+
+          <label for="zona-a-x2">X2</label>
+          <input type="number" name='zona-a-x2' v-model="zoneA.x2" id="zona-a-x2">
+
+          <label for="zona-a-y2">Y2</label>
+          <input type="number" name='zona-a-y2' v-model="zoneA.y2" id="zona-b-y2">
+        </div>
+
+        <div class="zone-b">
+          <p>Zona B</p>
+          <label for="zona-b-x1">X1</label>
+          <input type="number" name='zona-b-x1' v-model="zoneB.x1" id="zona-b-x1">
+
+          <label for="zona-b-y1">Y1</label>
+          <input type="number" name='zona-b-y1' v-model="zoneB.y1" id="zona-b-y1">
+
+          <label for="zona-b-x2">X2</label>
+          <input type="number" name='zona-b-x2' v-model="zoneB.x2" id="zona-b-x2">
+
+          <label for="zona-b-y2">Y2</label>
+          <input type="number" name='zona-b-y2' v-model="zoneB.y2" id="zona-b-y2">
+        </div>
+        
+        <br>
+        <div class="params">
+          <label for="coeffient">Número de datos por clases</label>
+          <input type="number" name="coeffient" id="coeffient" v-model="numberZ">
+          
+          <label for="coeffient">Coeficiente de aprendizaje</label>
+          <input type="number" name="coeffient" id="coeffient" v-model="coeffient">
+        </div>
+
+        <br>
+        <div class="options">
+
+          <button v-on:click="run" :disabled='disabled' >Ejecutar</button>
+        </div>
+      </div>
+      <hr>
+
+      <div class="">
+        <!-- AQUÍ DEBE DIBUJARSE EL PLANO CARTESIANO! -->
+      </div>
+
+    </div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<script src="index.js"></script>
