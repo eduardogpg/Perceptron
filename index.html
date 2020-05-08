@@ -3,65 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <title>Perceptron</title>
   </head>
   
   <body>
+    
     <div id="app">
-      <div class="header">
-
-        <div class="zone-a">
-          <p>Zona A</p>
-          <label for="zona-a-x1">X1</label>
-          <input type="number" name='zona-a-x1' v-model="zoneA.x1" id="zona-a-x1">
-
-          <label for="zona-a-y1">Y1</label>
-          <input type="number" name='zona-a-y1' v-model="zoneA.y1" id="zona-b-y1">
-
-          <label for="zona-a-x2">X2</label>
-          <input type="number" name='zona-a-x2' v-model="zoneA.x2" id="zona-a-x2">
-
-          <label for="zona-a-y2">Y2</label>
-          <input type="number" name='zona-a-y2' v-model="zoneA.y2" id="zona-b-y2">
-        </div>
-
-        <div class="zone-b">
-          <p>Zona B</p>
-          <label for="zona-b-x1">X1</label>
-          <input type="number" name='zona-b-x1' v-model="zoneB.x1" id="zona-b-x1">
-
-          <label for="zona-b-y1">Y1</label>
-          <input type="number" name='zona-b-y1' v-model="zoneB.y1" id="zona-b-y1">
-
-          <label for="zona-b-x2">X2</label>
-          <input type="number" name='zona-b-x2' v-model="zoneB.x2" id="zona-b-x2">
-
-          <label for="zona-b-y2">Y2</label>
-          <input type="number" name='zona-b-y2' v-model="zoneB.y2" id="zona-b-y2">
-        </div>
-        
-        <br>
-        <div class="params">
-          <label for="coeffient">Número de datos por clases</label>
-          <input type="number" name="coeffient" id="coeffient" v-model="numberZ">
+      <div class="container">
+        <div class="row mt-2">
+          <div class="col-6">
+            <div class="font-weight-bold">Zona A</div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="zona-a-x1">X1</label>
+                  <input class="form-control" type="number" name='zona-a-x1' v-model="zoneA.x1" id="zona-a-x1">
+                </div>
+                <div class="form-group">
+                  <label for="zona-a-x2">X2</label>
+                  <input class="form-control" type="number" name='zona-a-x2' v-model="zoneA.x2" id="zona-a-x2">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="zona-a-y1">Y1</label>
+                  <input class="form-control" type="number" name='zona-a-y1' v-model="zoneA.y1" id="zona-b-y1">
+                </div>
+                <div class="form-group">
+                  <label for="zona-a-y2">Y2</label>
+                  <input class="form-control" type="number" name='zona-a-y2' v-model="zoneA.y2" id="zona-b-y2">
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <label for="coeffient">Coeficiente de aprendizaje</label>
-          <input type="number" name="coeffient" id="coeffient" v-model="coeffient">
+          <div class="col-6">
+            <div class="font-weight-bold">Zona B</div>
+            <div class="row">
+              <div class="col">
+                
+                <div class="form-group">
+                  <label for="zona-b-x1">X1</label>
+                  <input class="form-control" type="number" name='zona-b-x1' v-model="zoneB.x1" id="zona-b-x1">
+                </div>
+
+                <div class="form-group">
+                  <label for="zona-b-x2">X2</label>
+                  <input class="form-control" type="number" name='zona-b-x2' v-model="zoneB.x2" id="zona-b-x2">
+                </div>
+
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <label for="zona-b-y1">Y1</label>
+                  <input class="form-control" type="number" name='zona-b-y1' v-model="zoneB.y1" id="zona-b-y1">
+                </div>
+
+                <div class="form-group">
+                  <label for="zona-b-y2">Y2</label>
+                  <input class="form-control" type="number" name='zona-b-y2' v-model="zoneB.y2" id="zona-b-y2">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
 
-        <br>
-        <div class="options">
+        <hr>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="coeffient">Número de datos por clases</label>
+              <input class="form-control" type="number" name="coeffient" id="coeffient" v-model="numberZ">
+            </div>
+            
+            <div class="form-group">
+              <label for="coeffient">Número de datos por clases</label>
+              <input class="form-control" type="number" name="coeffient" id="coeffient" v-model="numberZ">
+            </div>
 
-          <button v-on:click="run" :disabled='disabled' >Ejecutar</button>
+            <div>
+              <button v-on:click="run" :disabled='disabled' class="btn btn-primary">Ejecutar</button>
+            </div>
+
+          </div>
         </div>
       </div>
-      <hr>
-
-      <div class="">
-        <!-- AQUÍ DEBE DIBUJARSE EL PLANO CARTESIANO! -->
-      </div>
-
     </div>
+
+
   </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
