@@ -18,7 +18,7 @@ const app = new Vue({
     },
 
     coeffient: 0,
-    numberZ: 10,
+    numberZ: 100,
     disabled: false,
     
     matrix: [],
@@ -131,10 +131,16 @@ const app = new Vue({
       ctx.moveTo(nexPOSX, centerY);
       ctx.lineTo(centerX, nexPOSY);
 
+      var superPOSX = (nexPOSX * 2 ) + 1
+      var superPOSY = (nexPOSY * 2 ) + 1
+
+      superPOSX = 300 - (superPOSX - 300)
+      superPOSX = 300 - (superPOSY - 300)
+
+      console.log(superPOSX);
+      console.log(superPOSY);
       
-
       ctx.stroke();
-
     },
 
     activation: function (wi, x1, x2, y, n) {
@@ -187,7 +193,6 @@ const app = new Vue({
 
       this.rectay = (-1 *(theta )/ w2);
       this.rectax =(-1*(theta/w1));
-
 
     }
 
