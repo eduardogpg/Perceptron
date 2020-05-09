@@ -101,17 +101,33 @@ const app = new Vue({
       
       var centerX = 300;
       var centerY = 300;
+      var contador = 1;
 
-      this.matrix.forEach(function (element) {
+      var primer_punto = this.matrix[0];
+      var posX = primer_punto[0];
+      var posY = primer_punto[1];
+
+      console.log(posX);
+      console.log(posY);
+
+      posX = centerX + (posX * increment);
+      posY = centerY - (posY * increment);
+      
+      ctx.fillRect(posX, posY, 5, 5);
+
+      // this.matrix.forEach(function (element) {
+
+      //   console.log(contador);
           
-        var posX = centerX + ( element[0] * increment ) ;
-        var posY = centerY + ( element[1] * increment ) ;
+      //   var posX = centerX + ( element[0] * increment ) ;
+      //   var posY = centerY + ( element[1] * increment ) ;
         
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(posX, posY, 5, 5);
+      //   ctx.fillStyle = "#FF0000";
+      //   ctx.fillRect(posX, posY, 5, 5);
 
-        
-      });
+      //   contador = contador + 1;
+
+      // });
 
       ctx.stroke();
 
