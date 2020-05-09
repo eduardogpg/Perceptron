@@ -42,42 +42,40 @@ const app = new Vue({
     
     generateMatrix: function(){
       // Matriz de 3 columnas
-      for(var i=0; i < this.numberZ * 2; i++) {
+      for(var i=0; i < this.numberZ * 2; i=i+2) {
         
-        if (i % 2 == 0){
-          var x = this.getRadomNumber(this.zoneA.x1, this.zoneA.x1);
-          var y = this.getRadomNumber(this.zoneA.y1, this.zoneA.y1);
+          var x = this.getRadomNumber(this.zoneA.x1, this.zoneA.x2);
+          var y = this.getRadomNumber(this.zoneA.y1, this.zoneA.y2);
           
-          this.matrix[i] = [x, y, 1]; // A
-        
-        } else {
+          this.matrix[i] = [x, y, -1]; // A
+         
           var x = this.getRadomNumber(this.zoneB.x1, this.zoneB.x2);
           var y = this.getRadomNumber(this.zoneB.y1, this.zoneB.y2);
 
-          this.matrix[i] = [x, y, 1]; // B
-        }
+          this.matrix[i+1] = [x, y, 1]; // B
       }
 
     },
 
     drawXYPlane: function () {
-
+      
       var canvas = document.getElementById("plano");
       var ctx = canvas.getContext("2d");
       
-      // 600 x 600 -> 20
+      // Limpia el plano cartesiano!
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Eje X
-      ctx.moveTo(0, 300);
-      ctx.lineTo(600, 300);
+      ctx.moveTo(0, canvas.height / 2);
+      ctx.lineTo(canvas.width, canvas.height / 2);
 
       // Eje Y
-      ctx.moveTo(300, 0);
-      ctx.lineTo(300, 600);
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
 
       // ctx.fillRect(x, y, w, h); 
-      var distance = 10; // Número de espacios
-      var increment = 600 / distance;
+      var distance = 15; // Número de espacios
+      var increment = canvas.width / distance;
       var posX = increment;
 
       for(i = 0; i < distance; i ++ ){
@@ -101,33 +99,24 @@ const app = new Vue({
       
       var centerX = 300;
       var centerY = 300;
-      var contador = 1;
+      var contador = 0;
 
-      var primer_punto = this.matrix[0];
-      var posX = primer_punto[0];
-      var posY = primer_punto[1];
-
-      console.log(posX);
-      console.log(posY);
-
-      posX = centerX + (posX * increment);
-      posY = centerY - (posY * increment);
-      
-      ctx.fillRect(posX, posY, 5, 5);
-
-      // this.matrix.forEach(function (element) {
-
-      //   console.log(contador);
-          
-      //   var posX = centerX + ( element[0] * increment ) ;
-      //   var posY = centerY + ( element[1] * increment ) ;
+      this.matrix.forEach(function (element) {
         
-      //   ctx.fillStyle = "#FF0000";
-      //   ctx.fillRect(posX, posY, 5, 5);
+        ctx.fillStyle = "#FF0000";
+        
+        if (contador % 2 != 0) {
+          ctx.fillStyle = "#008000";
+        }
 
-      //   contador = contador + 1;
+        posX = centerX + (element[0] * increment);
+        posY = centerY - (element[1] * increment);
 
-      // });
+        ctx.fillRect(posX, posY, 5, 5);
+        
+        contador = contador + 1;
+        
+      });
 
       ctx.stroke();
 
