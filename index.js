@@ -22,6 +22,9 @@ const app = new Vue({
     disabled: false,
     
     matrix: [],
+    
+    rectax:0,
+    rectay:0,
   },
 
   methods: {
@@ -29,9 +32,9 @@ const app = new Vue({
       this.disable = true;
       
       this.generateMatrix();
-      this.drawXYPlane();
+      this.perceptron()
 
-      this.perceptron();
+      this.drawXYPlane();
 
       this.disable = false;
     },
@@ -97,8 +100,8 @@ const app = new Vue({
         posY = posY + increment;
       }
       
-      var centerX = 300;
-      var centerY = 300;
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
       var contador = 0;
 
       this.matrix.forEach(function (element) {
@@ -118,13 +121,76 @@ const app = new Vue({
         
       });
 
+      // [0,recty] [rectax,0]
+      console.log(this.rectax);
+      console.log(this.rectay);
+
+      var nexPOSX = centerX + (this.rectax * distance);
+      var nexPOSY = centerY - (this.rectay * distance);
+
+      ctx.moveTo(nexPOSX, centerY);
+      ctx.lineTo(centerX, nexPOSY);
+
+      
+
       ctx.stroke();
 
     },
 
-    perceptron: function() {
-      // El algoritmo debería ir aquí!
+    activation: function (wi, x1, x2, y, n) {
+      s = (wi[0] * x1 + (wi[1] * x2)) - wi[2];
+
+      f = this.EvalActivacionEscalon(s);
+      
+      if ((y - f) != 0) {
+        
+        wi[0] = wi[0] + n * (y - f) * x1;
+        wi[1] = wi[1] + n * (y - f) * x2;
+        wi[2] = wi[2] - n * (y - f);
+      
+      }else {
+
+        wi[0] = wi[0];
+        wi[1] = wi[1];
+        wi[2] = wi[2];
+
+      }
+
+      P = [wi[0], wi[1], wi[2]];
+      return P;
+
+    },
+
+    EvalActivacionEscalon: function (x) {
+      return (x >= 0) ? 1 : -1;
+    },
+
+    perceptron: function () {
+      
+      var weights = [Math.random(), Math.random(), Math.random()];
+      
+      var w1 = 0;
+      var w2 = 0;
+      var theta = 0;
+
+      for (let j = 0; j < this.numberZ * 2; j++) {
+        
+        P = this.activation(weights, this.matrix[j][0], this.matrix[j][1], this.matrix[j][2], this.coeffient);
+        
+        w1 = P[0];
+        w2 = P[1];
+        theta = P[2];
+
+        weights = [w1, w2, theta];
+        
+      }
+
+      this.rectay = (-1 *(theta )/ w2);
+      this.rectax =(-1*(theta/w1));
+
+
     }
+
   },
 
 });
